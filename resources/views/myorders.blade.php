@@ -18,6 +18,7 @@
                   <h5>Addresse : {{$item->adress}}</h5>
                   <h5>Status de paiement : {{$item->payment_status}}</h5>
                   <h5>Moyen de payement : {{$item->payment_method}}</h5>
+                  <h5>Quantité Selectionée : {{$item->Amount}}</h5>
                  </div>
               </div>
               </div>

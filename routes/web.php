@@ -29,10 +29,14 @@ Route::post("/register", [UserController::class,'register']);
 Route::get("/", [ProductController::class,'index']);
 Route::get("/detail/{id}", [ProductController::class,'detail']);
 Route::get("/detail/add_to_cart/{id}", [ProductController::class,'addToCart']);
-Route::get("/cartlist", [ProductController::class,'cartList']);
-Route::get("/removecart/{id}", [ProductController::class,'removeCart']);
+Route::get("/cartlist", [ProductController::class,'cartList','isavailable']);
+Route::get("/removecart/{id},{cart_id}", [ProductController::class,'removeCart']);
 Route::get("/ordernow", [ProductController::class,'ordernows']);
 Route::get("/detail/buynow/{id}", [ProductController::class,'buynow']);
 Route::get("/orderplace", [ProductController::class,'orderPlace']);
 Route::get("/myorders", [ProductController::class,'myOrders']);
+Route::get("/about", [ProductController::class,'aboutus']);
+Route::get("/admin", [ProductController::class,'illdoit']);
+
+
 

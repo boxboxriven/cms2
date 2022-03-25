@@ -27,12 +27,26 @@ class ProductController extends Controller
     }
     function addToCart(Request $req , $id)
     {
+        
         if($req->session()->has('user'))
         {
     $cart= new Cart;
     $cart->user_id=$req->session()->get('user')['id'];
     $cart->product_id=$req->product_id;
-    $cart->save();
+    $cart->TotalAmount=$req->quantity;
+    $gg = DB::table('products')
+    ->select('stock')
+    ->where('id', $id)
+    ->get();
+    $Qtyz=$req->quantity; 
+    foreach($gg as $s){
+        $q= $s->stock;
+            }
+$operation = $q-$Qtyz;
+$stockres = DB::table('products')
+    ->where('id', $id)
+    ->update(['stock' =>$operation]);
+      $cart->save();
     return redirect ('/');
     }
     else 
@@ -50,24 +64,62 @@ function cartList(){
  $products=DB::table('cart')
  ->join('products','cart.product_id','=','products.id')
  ->where ('cart.user_id',$userId)
- ->select('products.*','cart.id as cart_id')
+ ->select('products.*','cart.id as cart_id','cart.product_id as product_id','cart.TotalAmount as cart_TotalAmount')
  ->get();
+ 
 
  return view ('cartlist',['products'=>$products]);
 }
-function removeCart ($id)
+function removeCart ( $product_id,$cart_id)
     {
-Cart::destroy($id);
-return redirect ('/cartlist');
+    $userId=Session::get('user')['id'];
+    $riki = DB::table('products')
+    ->join('cart','cart.product_id','=','products.id')
+    ->select('stock')
+    ->where('product_id', $product_id)
+    ->get();
+    $nia=0;
+    foreach($riki as $j){
+        $nia= $j->stock;
+            }
+    $riku = DB::table('cart')
+    ->select('TotalAmount')
+    ->where('product_id', $product_id)
+    ->get();
+     $niaz=0;
+    foreach($riku as $m){
+        $niaz= $m->TotalAmount;
+                    }
+         $operationz = $nia+$niaz;
+    $stockress = DB::table('products')
+    ->join('cart','cart.product_id','=','products.id')
+    ->select('stock')
+    ->where('product_id', $product_id) 
+    ->update(['stock' =>$operationz]);
+    DB::table('cart')->where('id', $cart_id)->delete();
+    return redirect('/cartlist');
     }
-    function ordernows(){
+    function ordernows(Request $req){
     $userId=Session::get('user')['id'];
     
     $total= $products=DB::table('cart')
      ->join('products','cart.product_id','=','products.id')
+     ->select ('TotalAmount','price')
      ->where ('cart.user_id',$userId)
-     ->sum('products.price');
-     return view ('ordernow',['total'=>$total]);
+     ->get();
+     $niat=0;
+     $niar=0;
+     $operationn=0;
+     $operationn1=0;
+    foreach($total as $k){
+        $niat= $k->TotalAmount;
+        $niar= $k->price;
+                   
+     $operationn = $niar*$niat;
+     $operationn1=$operationn+$operationn1;
+     
+    }
+      return view ('ordernow',['total'=>$operationn1]);
 }
 function orderPlace(Request $req)
  {
@@ -78,12 +130,14 @@ function orderPlace(Request $req)
        $order=new Order;
        $order->product_id=$cart['product_id'];
        $order->user_id=$cart['user_id'];
-       $order->status="pending"; 
+       $order->status="En Cours De Traitement"; 
        $order->payment_method=$req->payment;
-       $order->payment_status="pending";
+       $order->payment_status="En Cours De Traitement";
        $order->adress=$req->adress;
+       $order->Amount=$cart['TotalAmount'];
        $order->save();
        Cart::where('user_id',$userId)->delete();
+
     }
     $req->input();
     return redirect('/');
@@ -96,5 +150,55 @@ function myOrders()
      ->where ('orders.user_id',$userId)
      ->get();
      return view ('myorders',['orders'=>$orders]);
+}
+private function updatestock($id,$qty){
+    $qtestock = DB::table('products')
+    ->select('stock')
+    ->where('id', $id)
+    ->get();
+    
+
+    foreach($qtestock as $s){
+        $q= $s->stock;
+            }
+$operation = $q-$qty;
+if ($operation < 0 ){
+    echo "error";
+}
+else {
+    $stockres = DB::table('products')
+    ->where('id', $id)
+    ->update(['stock' =>$operation]);
+}
+}
+public function genie() {
+    $age = parseInt(document.getElementById("nombre").value, 10);
+    alert(age);
+}
+public function aboutus() {
+    $NUM2 = DB::table('a propos')
+    ->select('CONTACTNUM2')
+    ->get();
+    foreach($NUM2 as $x){
+        $NUMERO2= $x->CONTACTNUM2;
+            }
+    $DESC2 = DB::table('a propos')
+    ->select('DESCRIPTIONSOC')
+    ->get();
+    foreach($DESC2 as $e){
+        $DESCRIPTION2= $e->DESCRIPTIONSOC;
+            }
+            return view ('about',['NUMEROFIXE'=> $NUMERO2],['DESCRIPTION2'=>$DESCRIPTION2]);
+        
+}
+public function illdoit () {
+    $NUM2 = DB::table('produits')
+    ->select('name')
+    ->get();
+    foreach($NUM2 as $x){
+        $NOM= $x->name;
+            }
+            return view ('admin',['NOM'=> $NOM]);
+
 }
 }

@@ -13,12 +13,13 @@
               </div>
               <div class=col-sm-4> 
                   <div class="">
+                  <h2>Qte Demandée :{{$item->cart_TotalAmount}}</h2>
                   <h2>{{$item->name}}</h2>
                   <h5>{{$item->description}}</h5>
                  </div>
               </div>
               <div class=col-sm-3> 
-                  <a href="/cms2/public/removecart/{{$item->cart_id}}" class="btn btn-warning">Supprimer du panier</a></button> 
+                  <a href="/cms2/public/removecart/{{$item->product_id}},{{$item->cart_id}}" class="btn btn-warning">Supprimer du panier</a></button> 
               </div>
               </div>
               @endforeach

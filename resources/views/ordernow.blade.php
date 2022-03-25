@@ -9,11 +9,11 @@
            <td>{{$total}} DT</td>
          </tr>
          <tr>
-           <td>Tax</td>
+           <td>Tax (Fixé pour Toutes les Articles)</td>
            <td>5 DT </td>
          </tr>
          <tr>
-           <td>Livraison</td>
+           <td>Livraison (Fixé pour Toutes les Articles)</td>
            <td>10 DT</td>
          </tr>
          <tr>
@@ -26,7 +26,7 @@
      <form action="orderplace" method="get">
         @csrf
   <div class="form-group">
-    <textarea name="adress" type="text" placeholder="Entrer Votre Adresse Ici" class="form-control" ></textarea>
+    <textarea name="adress" type="text" placeholder="Entrer Votre Adresse Ici" class="form-control" required ></textarea>
   </div>
   <div class="form-group">
     <label for="pwd">Methode de payement</label> <br> <br>
