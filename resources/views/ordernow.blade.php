@@ -31,9 +31,9 @@
   <div class="form-group">
     <label for="pwd">Methode de payement</label> <br> <br>
     <p>
-    <input type="radio" value="cash" name="payment"> <span>Payement En Ligne</span> <br> <br>
-    <input type="radio" value="cash" name="payment"> <span>Payement Sur Place</span> <br> <br>
-    <input type="radio" value="cash" name="payment"> <span>Payement Sur des Tranches</span> <br> <br>
+    <input type="radio" value="En Ligne" name="payment"> <span>Payement En Ligne</span> <br> <br>
+    <input type="radio" value="Espéces" name="payment"> <span>Payement Sur Place</span> <br> <br>
+    <input type="radio" value="Par des tranches" name="payment"> <span>Payement Sur des Tranches</span> <br> <br>
     </p>
   </div>
   </div>

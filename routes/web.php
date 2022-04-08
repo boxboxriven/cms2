@@ -36,7 +36,31 @@ Route::get("/detail/buynow/{id}", [ProductController::class,'buynow']);
 Route::get("/orderplace", [ProductController::class,'orderPlace']);
 Route::get("/myorders", [ProductController::class,'myOrders']);
 Route::get("/about", [ProductController::class,'aboutus']);
-Route::get("/admin", [ProductController::class,'illdoit']);
-
-
-
+Route::get("/admin", [ProductController::class,'ModifAdmin']);
+Route::get("/ajouter", [ProductController::class,'ajouter']);
+Route::post("/ajouter1", [ProductController::class,'ajouter1']);
+Route::get("/ajouterclient", [ProductController::class,'ajouterclient']);
+Route::post("/ajouterclient1", [ProductController::class,'ajouterclient1']);
+Route::get("/supprimerclient", [ProductController::class,'supprimerclient']);
+Route::get("/suprimerproduit", [ProductController::class,'suprimerproduit']);
+Route::get("/supprimercommande", [ProductController::class,'suprimercommande']);
+Route::get("/modifierproduit", [ProductController::class,'modifierproduit']);
+Route::get("/modifierproduit1", [ProductController::class,'modifierproduit1']);
+Route::get("/adminlogin", [UserController::class,'adminlogin']);
+Route::get("/adminlogin1", [ProductController::class,'adminlogin1']);
+Route::get('/logoutadmin', function () {
+    Session::forget('admin');
+    return redirect('adminlogin');
+});
+Route::get("/contactpage", [ProductController::class,'contactpage']);
+Route::get("/contactpage1", [ProductController::class,'contactpage1']);
+Route::get("/admincontact1", [ProductController::class,'admincontact1']);
+Route::get("/supprimercommentaire", [ProductController::class,'suprimercommentaire']);
+Route::get("/repondrecommentaire", [ProductController::class,'repondrecommentaire']);
+Route::post("/repondrecommentaire1", [ProductController::class,'repondrecommentaire1']);
+Route::get("/editapropos", [ProductController::class,'editapropos']);
+Route::post("/editapropos1", [ProductController::class,'editapropos1']);
+Route::get("/index3", [ProductController::class,'index1']);
+Route::post("/", [ProductController::class,'']);
+Route::post("/", [ProductController::class,'']);
+Route::post("/", [ProductController::class,'']);

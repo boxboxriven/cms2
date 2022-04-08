@@ -1,29 +1,33 @@
+@extends('master')
+@section("content")
+<head>
+  <title>
+    S'inscrire
+  </title>
+</head>
+<body>
 <form action="register" method="post">
   @csrf
   <div class="container">
-    <h1>S'enregistrer</h1>
-    <p>veuillez remplir les champs.</p>
+    <h1 style = "font-family:Calibri;font-size:45px;" >S'enregistrer</h1>
+    <label style = "font-family:Calibri;font-size:25px;" for="email"><b>Votre Nom</b></label>
+    <input style = "font-family:Calibri;font-size:20px;" type="text" placeholder="Entrer Votre Nom" name="name" id="email" required>
+
+    <label style = "font-family:Calibri;font-size:25px;" for="psw"><b>Votre Email</b></label>
+    <input style = "font-family:Calibri;font-size:20px;" type="text" placeholder="Enter Votre email" name="email" id="psw" required>
+
+    <label style = "font-family:Calibri;font-size:25px;" for="psw-repeat"><b>Mot De passse</b></label>
+    <input style = "font-family:Calibri;font-size:20px;" type="password" placeholder="Enter un mot de passe" name="password" id="psw-repeat" required>
     <hr>
-
-    <label for="email"><b>Votre Nom</b></label>
-    <input type="text" placeholder="Entrer Votre Nom" name="name" id="email" required>
-
-    <label for="psw"><b>Votre Email</b></label>
-    <input type="text" placeholder="Enter Votre email" name="email" id="psw" required>
-
-    <label for="psw-repeat"><b>Mot De passse</b></label>
-    <input type="password" placeholder="Enter un mot de passe" name="password" id="psw-repeat" required>
-    <hr>
-
-    <p>Vous accepter les termes et les conditions en cliquant sur créer : <a href="https://www.nibusinessinfo.co.uk/content/sample-website-terms-and-conditions-use">Termes et Conditions</a>.</p>
-    <button type="submit" class="registerbtn">Créer Votre Compte</button>
+    <button style = "font-family:Calibri;font-size:25px;" type="submit" class="registerbtn">Créer Votre Compte</button>
   </div>
 
   <div class="container signin">
-    <p>Vous Avez Deja un Compte? <a href="/cms2/public/login">S'identifier maintenant</a>.</p>
+    <p style = "font-family:Calibri;font-size:25px;" >Vous Avez Deja un Compte? <a style = "font-family:Calibri;font-size:25px;" href="/cms2/public/login">S'identifier maintenant</a>.</p>
   </div>
 </form>
 <style>
+  </body>
 {box-sizing: border-box}
 
 /* Add padding to containers */
@@ -79,3 +83,4 @@ a {
   text-align: center;
 }
 </style>
+@endsection

@@ -11,106 +11,95 @@
 <body>
   <form action="intermediaire" method="post"></form>
 <div class="container">
-  <h1>Tableau d'administration</h1>
-  <h2>Vous pouvez ici modifier des informations relatives pour vos produits</h2>            
+  <h1>CETTE SECTION EST RESERVEE POUR LES ADMINISTRATEURS</h1>
+  <h2>Consultation des informations relatives pour vos produits : </h2>            
   <table class="table">
-    <thead>
+    <head>
       <tr>
         <th>Nom Du Produit</th>
         <th>Prix du produit</th>
         <th>Quantité restante</th>
+        <th>ID Du Produit</th>
         
       </tr>
-    </thead>
-    <tbody>
+    </head>
+    <body>
       <tr>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
+      <?php 
+    foreach ($tab as $r){
+      $variable1= $r->Nom;
+      $variable2= $r->Prix;
+      $variable3= $r->Qte;
+      $variable4= $r->ID;
+      ?>
+ <tr>
+      <td><?php echo $variable1  ?></td>
+      <td><?php echo $variable2 ?></td>
+      <td><?php echo $variable3  ?></td>
+      <td><?php echo $variable4 ?></td>
       </tr>
-      <tr>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
-      </tr>
-      <tr>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
-      </tr>
-      <tr>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
-      </tr>
-    </tbody>
+     <?php }
+        ?>
+    </body>
   </table>
-  <h2>Vous pouvez ici modifier des informations relatives pour vos clients</h2>            
+  <h2>Consultation des informations relatives pour vos clients : </h2>            
   <table class="table">
-    <thead>
+    <head>
       <tr>
         <th>Nom Du Client</th>
         <th>Email Du Client</th>
         <th>ID Du Client</th>
-
-        
       </tr>
-    </thead>
-    <tbody>
+    </head>
+    <body>
       <tr>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
+      <?php 
+    foreach ($tab1 as $f){
+      $variable1= $f->name;
+      $variable2= $f->email;
+      $variable3= $f->id;
+      ?>
+ <tr>
+      <td><?php echo $variable1 ?></td>
+      <td><?php echo $variable2 ?></td>
+      <td><?php echo $variable3 ?></td>
       </tr>
-      <tr>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
-      </tr>
-      <tr>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
-      </tr>
-      <tr>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
-      </tr>
-    </tbody>
+      <?php }
+        ?>
+    </body>
   </table>
-  <h2>Vous pouvez ici modifier des informations relatives pour les commandes des clients</h2>            
+  <h2>Consultation des informations relatives pour les commandes des clients :   </h2>            
   <table class="table">
-    <thead>
+    <head>
       <tr>
-        <th>Nom Du Client</th>
-        <th>Nom Du Produit</th>
-        <th>Quantité demandée par le client</th>
+        <th>Adresse Du Client</th>
+        <th>ID Du Client</th>
+        <th>ID Du Produit </th>
+        <th>Moyen de Payment</th>
+        <th>Etat du paiement</th>
         
       </tr>
-    </thead>
-    <tbody>
+    </head>
+    <body>
       <tr>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
-      </tr>
+      <?php 
+    foreach ($tab3 as $i){
+      $variable1= $i->Adresse;
+      $variable2 = $i->IDClient;
+      $variable3= $i->IDProduit;
+      $variable4= $i->PM;
+      $variable5= $i->PS;
+      ?>
       <tr>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
+      <td><?php echo $variable1 ?></td>
+      <td><?php echo $variable2 ?></td>
+      <td><?php echo $variable3 ?></td>
+      <td><?php echo $variable4 ?></td>
+      <td><?php echo $variable5 ?></td>
       </tr>
-      <tr>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
-      </tr>
-      <tr>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
-      </tr>
-    </tbody>
+      <?php }
+        ?>
+    </body>
   </table>
 </div>
 <!DOCTYPE html>
@@ -126,10 +115,10 @@
 <body>
 <div class="container">
 
-  <button type="button" class="btn btn-success">Enregistrer Les Modifications</button>
+  <a href='http://localhost/cms2/public/AdminMDF' type="button" style="margin:5px;" class="btn btn-success">Passez a la modification (Vers la page de modification)</button>
 </form>
-  <button type="button" class="btn btn-danger">Quitter Sans Enregistrer Aucun modification</button>
-  <button type="button" class="btn btn-primary">Consulter Votre Site Web </button>
+
+  <a href='http://localhost/cms2/public/' type="button" style="margin:5px;" class="btn btn-primary">  Consulter Votre Site Web  (Vers le site)</button>
 
 </body>
 </html>

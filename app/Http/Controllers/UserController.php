@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\admin;
 use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
@@ -16,6 +17,7 @@ class UserController extends Controller
         }
         else {
             $req->session()->put('user',$user);
+            $req->session()->put('ok',TRUE);
             return redirect ('/');
         }
     }
@@ -30,5 +32,7 @@ class UserController extends Controller
      return redirect('/login');
 
     }
-
+    function adminlogin () {
+        return view ('adminlogin');
+}
 }

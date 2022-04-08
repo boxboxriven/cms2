@@ -7,6 +7,7 @@
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
   </ol>
 
   <!-- Wrapper for slides -->
@@ -16,8 +17,8 @@
        <a href="detail/{{$item['id']}}">
       <img class="slider-img" src="{{$item['gallerie']}}">
       <div class="carousel-caption slider-text">
-        <h3>{{$item['name']}}</h3>
-        <p>{{$item['description']}}</p>
+        <h3 style = "font-family:Calibri;font-size:25px;" >{{$item['name']}}</h3>
+        <p style = "font-family:Calibri;font-size:25px;" >{{$item['description']}}</p>
       </div>
     </div>
     @endforeach
@@ -26,7 +27,7 @@
   <!-- Left and right controls -->
   <a class="left carousel-control" href="#myCarousel" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left"></span>
-    <span class="sr-only">Previous</span>
+    <span style = "font-family:Calibri;font-size:25px;" class="sr-only">Previous</span>
   </a>
   <a class="right carousel-control" href="#myCarousel" data-slide="next">
     <span class="glyphicon glyphicon-chevron-right"></span>
@@ -34,13 +35,14 @@
   </a>
 </div>
 <div class="trending-wrapper">
-    <h3>Trends Actuelles</h3>
+    <h3 style = "font-family:Calibri;font-size:25px;" >Nouveaux Produits</h3>
     @foreach($products as $item)
    <div class="trending-item">
    <a href="detail/{{$item['id']}}">
       <img class="trending-image" src="{{$item['gallerie']}}">
       <div class="">
-        <h3>{{$item['name']}}</h3>
+        <h3 style = "font-family:Calibri;font-size:25px;" >{{$item['name']}}</h3>
+        
       </div>
 </a>
     </div>
