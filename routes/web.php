@@ -60,7 +60,4 @@ Route::get("/repondrecommentaire", [ProductController::class,'repondrecommentair
 Route::post("/repondrecommentaire1", [ProductController::class,'repondrecommentaire1']);
 Route::get("/editapropos", [ProductController::class,'editapropos']);
 Route::post("/editapropos1", [ProductController::class,'editapropos1']);
-Route::get("/index3", [ProductController::class,'index1']);
-Route::post("/", [ProductController::class,'']);
-Route::post("/", [ProductController::class,'']);
-Route::post("/", [ProductController::class,'']);
+Route::get("/index2", [ProductController::class,'index1']);

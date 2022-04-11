@@ -437,6 +437,6 @@ public function editapropos1 (Request $req) {
       return redirect ('admin');
 }
 public function index1 () {
-    return redirect ('index2');
+    return view ('index2');
 }
 }

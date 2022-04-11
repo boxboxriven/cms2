@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
 <link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="styles/single_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/single_responsive.css">
+<link rel="stylesheet" type="text/css" href="C:\xampp\htdocs\cms2\resources\css\single_responsive.css">
 </head>
 
 <body>
