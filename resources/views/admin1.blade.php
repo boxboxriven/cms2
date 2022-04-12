@@ -150,12 +150,12 @@
 </html>
 @else
 <?php
-header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
-header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); 
 ?>
 <head>
   <title>SESSION EXPIREE</title>
 </head>
-SESSION EXPIREE, VEUILLEZ VOUS CONNECTER A NOUVEAU
+  SESSION EXPIREE, VEUILLEZ VOUS CONNECTER A NOUVEAU
 <li><a href="/cms2/public/adminlogin">Login</a></li>
 @endif

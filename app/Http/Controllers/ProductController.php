@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
         if($req){
         $data= Product::all();
-        return view ('product',['products'=>$data]);
+        return view ('index2',['products'=>$data]);
     }else{echo 'eror';}
     }
     function detail($id)
@@ -438,5 +438,13 @@ public function editapropos1 (Request $req) {
 }
 public function index1 () {
     return view ('index2');
+}
+public function abonnement (Request $req) {
+    $var1= $req->abonnement;
+    $deleted = DB::table('abonnes')->insert([
+        'email'=> $var1
+
+    ]);
+    return redirect('http://localhost/cms2/public/');
 }
 }

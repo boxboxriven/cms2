@@ -61,3 +61,4 @@ Route::post("/repondrecommentaire1", [ProductController::class,'repondrecommenta
 Route::get("/editapropos", [ProductController::class,'editapropos']);
 Route::post("/editapropos1", [ProductController::class,'editapropos1']);
 Route::get("/index2", [ProductController::class,'index1']);
+Route::get("/abonnement", [ProductController::class,'abonnement']);

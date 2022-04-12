@@ -1,9 +1,6 @@
 @extends('master')
 @section("content")
 <head>
-  <title>
-    S'inscrire
-  </title>
 </head>
 <body>
 <form action="register" method="post">
@@ -31,9 +28,7 @@
 {box-sizing: border-box}
 
 /* Add padding to containers */
-.container {
-  padding: 16px;
-}
+
 
 /* Full-width input fields */
 input[type=text], input[type=password] {

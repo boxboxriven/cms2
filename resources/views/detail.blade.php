@@ -7,7 +7,7 @@
       <div class="discount-label  black"> <span>{{$product['Promotion']}}%</span> </div>
     </div>
     <div class="col-sm-6" >
-        <a  href="http://localhost/cms2/public/">Retour Arriére</a>
+        <a  href="<?=config('app.url');?>/cms2/public/">Retour Arriére</a>
         <div class="badge badge-pill badge-info">{{$stock}}</FONT></div>
         <h2 style = "font-family:Calibri;font-size:30px;"><FONT COLOR=""black">Nom du produit : {{$product['name']}}</FONT></h2>
         <h2 style = "font-family:Calibri;font-size:30px;"><s><FONT COLOR="black"> Prix : {{$product['price']}} DT </FONT> </s></h2>
@@ -15,7 +15,7 @@
         <h2 style = "font-family:Calibri;font-size:30px;"><FONT COLOR=""black">Description : {{$product['description']}}</FONT></h2>
         <h2 style = "font-family:Calibri;font-size:30px;"><FONT COLOR=""black  ">Catégorie : {{$product['catégorie']}}</FONT></h2>
         @if ($stock === 'disponible')
-        <form action="add_to_cart/{{$product['id']}}"  method="get">
+        <form action="<?=config('app.url');?>/cms2/public/detail/add_to_cart/{{$product['id']}}"  method="get">
         <h2> 
         <label style = "font-family:Calibri;font-size:30px;" for="tentacles">Quantité</label>
         <span >
@@ -32,7 +32,7 @@
         <form action="buynow/{{$product['id']}}"  method="get">
         <input type="hidden" name="product_id" value="{{$product['id']}}">
         </form>
-        
+  
     </div>
 </div>
 </div>
