@@ -39,6 +39,12 @@ $total= ProductController::cartItem();
 										<i class="arrow down"></i>
 									</a>
 								</li>
+								<li class="language">
+									<a href="/cms2/public/myorders">
+										Mes Achats
+										<i class="arrow down"></i>
+									</a>
+								</li>
 								<li class="account">
 									<a href="/cms2/public/logout">
 									Deconnexion de :  {{Session::get('user')['name']}}

@@ -3,6 +3,12 @@
 <div class="custom-product">
     <div class="col-sm-10">
         <div class="trending-wrapper">
+        <?php
+        $admins= DB::table('orders')
+        ->select('*')
+        ->count();
+        ?>
+        @if ($admins>0)
           <h4>Mes Achats</h4>
           <br>
           @foreach($orders as $item)
@@ -24,6 +30,9 @@
               </div>
               @endforeach
               </div>
+              @else
+              Il n'ya pas encore des produits, revenez vers le panier et appuyez commander maintenant.
+@endif
     </div>
 </div>
 @endsection

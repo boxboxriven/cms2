@@ -220,7 +220,7 @@ public function Admin () {
     ]);
             }
             $NUM3 = DB::table('orders')
-            ->select('adress','user_id','product_id','payment_method','payment_status')
+            ->select('*')
             ->get();
             $myArray3 = [];
             $c=0;
@@ -232,6 +232,9 @@ public function Admin () {
                 'IDProduit' => $z->product_id,
                 'PM' => $z->payment_method,
                 'PS' => $z->payment_status,
+                'n' => $z->id,
+                
+                
             ]);
                     }
                         
@@ -271,7 +274,7 @@ function ModifAdmin (){
     ]);
             }
             $NUM3 = DB::table('orders')
-            ->select('adress','user_id','product_id','payment_method','payment_status')
+            ->select('*')
             ->get();
             $myArray3 = [];
             $c=0;
@@ -283,6 +286,7 @@ function ModifAdmin (){
                 'IDProduit' => $z->product_id,
                 'PM' => $z->payment_method,
                 'PS' => $z->payment_status,
+                'n' => $z->id,
             ]);
                     }
                         
@@ -385,10 +389,12 @@ public function contactpage1 (Request $req) {
     $var99=$req->firstname;
     $var101=$req->lastname;
     $var102=$req->subject;
+    $var103=$req->email;
     DB::table('commentaires')->insert([
         'nom' => $var99,
         'prenom' => $var101,
-        'sujet' => $var102
+        'sujet' => $var102,
+        'email'=> $var103
     ]);
     return redirect('http://localhost/cms2/public/');
 }
@@ -446,5 +452,9 @@ public function abonnement (Request $req) {
 
     ]);
     return redirect('http://localhost/cms2/public/');
+}
+function modifiercommande() 
+{
+    return view ('modifiercommande');
 }
 }

@@ -114,7 +114,10 @@ $total= ProductController::cartItem();
           <input placeholder="Nom"  type="text" name="firstname" required >
         </div>
         <div class="form-item">
-         
+          
+        <input placeholder="Email"  type="text" name="email" required >
+        </div>
+        <div class="form-item">
           
           <input placeholder="Prenom"  type="text" name="lastname" required >
         </div>

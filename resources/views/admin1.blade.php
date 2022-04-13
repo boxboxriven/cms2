@@ -95,12 +95,14 @@
   <table class="table">
     <head>
       <tr>
+      <th>ID de la commande</th>
         <th>Adresse Du Client</th>
         <th>ID Du Client</th>
         <th>ID Du Produit </th>
         <th>Moyen de Payment</th>
         <th>Etat du paiement</th>
         <th>Supprimer une commande</th>
+        <th>Modifier cette commande</th>
         
       </tr>
     </head>
@@ -108,19 +110,26 @@
       <tr>
       <?php 
     foreach ($tab3 as $i){
+      $variable6= $i->n;
       $variable1= $i->Adresse;
       $variable2 = $i->IDClient;
       $variable3= $i->IDProduit;
       $variable4= $i->PM;
       $variable5= $i->PS;
+      
+    
       ?>
       <tr>
+      <td ><?php echo  $variable6 ?></td>  
       <td><?php echo $variable1 ?></td>
       <td><?php echo $variable2 ?></td>
       <td><?php echo $variable3 ?></td>
       <td ><?php echo $variable4 ?></td>
       <td ><?php echo  $variable5 ?></td>  
+      
       <td><a class='btn btn-danger' href= 'http://localhost/cms2/public/supprimercommande?rn=<?php echo $variable3;?>'>Supprimer Commande</a></td>
+      <td><a class='btn btn-info' href= 'http://localhost/cms2/public/modifiercommande?rh=<?php echo $variable6;?>'>Modifier Commande</a></td>
+
       </tr>
       <?php }
         ?>
