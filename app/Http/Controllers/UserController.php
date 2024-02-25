@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\admin;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     //
@@ -23,16 +24,24 @@ class UserController extends Controller
     }
     function register(Request $req )
     {
+
      //return $req->input();
      $user = new User;
      $user->name=$req->name;
      $user->email=$req->email;
-     $user->password=Hash::make($req->password);
-     $user->save();
-     return redirect('/login');
-
+$admin = DB::table('users')
+        ->select('email')
+        ->where('email', '=', $req->email)
+        ->count();
+if($admin==0){
+    $user->password=Hash::make($req->password);
+    $user->save();
+    return redirect('/login');
+}
+else{
+echo  "Cette adresse email est déja existante. Si vous avez déja un compte vous pouver vous " ?> <a href="http://localhost/cms2/public/login">connecter ici </a> <?php
+}
+        }
     }
-    function adminlogin () {
-        return view ('adminlogin');
-}
-}
+    
+?>

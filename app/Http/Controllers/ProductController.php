@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Order;
 use Session;
+use App\Post;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -14,7 +15,7 @@ class ProductController extends Controller
     //
     function index(Request $req)
     {
-        if($req){
+        if($req){   
         $data= Product::all();
         return view ('index2',['products'=>$data]);
     }else{echo 'eror';}
@@ -103,7 +104,7 @@ function removeCart ( $product_id,$cart_id)
     
     $total= $products=DB::table('cart')
      ->join('products','cart.product_id','=','products.id')
-     ->select ('TotalAmount','price')
+     ->select ('TotalAmount','price_promo')
      ->where ('cart.user_id',$userId)
      ->get();
      $niat=0;
@@ -112,7 +113,7 @@ function removeCart ( $product_id,$cart_id)
      $operationn1=0;
     foreach($total as $k){
         $niat= $k->TotalAmount;
-        $niar= $k->price;
+        $niar= $k->price_promo;
                    
      $operationn = $niar*$niat;
      $operationn1=$operationn+$operationn1;
@@ -132,6 +133,8 @@ function orderPlace(Request $req)
        $order->status="En Cours De Traitement"; 
        $order->payment_method=$req->payment;
        $order->payment_status="En Cours De Traitement";
+       $order->created_at=date('y-m-d h:i:s', strtotime('1 hour'));
+    
        $order->adress=$req->adress;
        $order->Amount=$cart['TotalAmount'];
        $order->save();
@@ -233,6 +236,7 @@ public function Admin () {
                 'PM' => $z->payment_method,
                 'PS' => $z->payment_status,
                 'n' => $z->id,
+                'nz' => $z->Amount,
                 
                 
             ]);
@@ -287,10 +291,11 @@ function ModifAdmin (){
                 'PM' => $z->payment_method,
                 'PS' => $z->payment_status,
                 'n' => $z->id,
+                'nz' => $z->Amount,
             ]);
                     }
                         
-            return view('admin1', array('tab' => $myArray,'tab1' => $myArray1,'tab3' => $myArray3));
+            return view('admin', array('tab' => $myArray,'tab1' => $myArray1,'tab3' => $myArray3));
 }
 
 public function ajouter (Request $req) {
@@ -306,50 +311,89 @@ public function ajouter1 (Request $req) {
     $var6=$req->description;
     $var7=$req->gallerie;
     $var8=$req->promotion;
-    DB::table('products')->insert([
-        'name' => $var1,
-        'price' => $var2,
-        'price_promo' => $var2-(($var8*$var2)/100),
-        'stock' => $var3,
-        'id' => $var4,
-        'catégorie' => $var5,
-        'description' => $var6,
-        'gallerie'=>$var7,
-        'Promotion'=>$var8
-    ]);
-    return redirect ('admin');
+    $admin = DB::table('products')
+        ->select('id')
+        ->where('id', '=', $req->id)
+        ->count();
+        if($admin==0){
+            DB::table('products')->insert([
+                'name' => $var1,
+                'price' => $var2,
+                'price_promo' => $var2-(($var8*$var2)/100),
+                'stock' => $var3,
+                'id' => $var4,
+                'catégorie' => $var5,
+                'description' => $var6,
+                'gallerie'=>$var7,
+                'Promotion'=>$var8
+            ]);
+            return redirect ('http://localhost/cms2/public/admin3');
+       }
+       else{
+        echo  "ID Déja existante, veuillez essayer avec une nouvelle ID " ;
+        }
 }
 public function ajouterclient (){
-    return view('http://localhost/cms2/public/admin');
+    return view('ajouterclient');
 }
 public function suprimerproduit (Request $req) {
     $deleted = DB::table('products')->where('id','=',$req->rn)->delete();
-    return redirect('http://localhost/cms2/public/admin');
+    return redirect('http://localhost/cms2/public/admin3');
     }
 public function ajouterclient1 (Request $req){
     $var11=$req->nom;
     $var22=$req->email;
-    $var32=$req->id;
     $var42=$req->mdp;
+    $admin = DB::table('users')
+        ->select('email')
+        ->where('email', '=', $var22)
+        ->count();
+    if($admin==0){
     DB::table('users')->insert([
         'name' => $var11,
         'email' => $var22,
-        'id' => $var32,
+        
         'password' => $var42
     ]);
-    return redirect('http://localhost/cms2/public/admin');
+    return redirect('http://localhost/cms2/public/admin2');
+}
+else{
+echo "Cette adresse email est déja existante.";
+}
+    
 }
 public function supprimerclient (Request $req) {
     $deleted = DB::table('users')->where('id','=',$req->rn)->delete();
-    return redirect('http://localhost/cms2/public/admin');
+    return redirect('http://localhost/cms2/public/admin2');
 }
 public function suprimercommande (Request $req) {
-    $deleted = DB::table('orders')->where('product_id','=',$req->rn)->delete();
-    return redirect('http://localhost/cms2/public/admin');
+    $deleted = DB::table('orders')->where('id','=',$req->rn)->delete();
+    return redirect('http://localhost/cms2/public/admin4');
 }
 public function modifierproduit() {
-    return view ('modifierproduit');
+    $NUM3 = DB::table('products')
+            ->select('*')
+            ->where('id',  $_REQUEST['rh'])
+            ->get();
+            $myArray6 = [];
+            $c=0;
+            foreach($NUM3 as $z){
+                $c++;
+                array_push($myArray6, (object)[
+                'name' => $z->name,
+                'price' => $z->price,
+                'qte' => $z->stock,
+                'catégorie' => $z->catégorie,
+                'description' => $z->description,
+                'gallerie' => $z->gallerie,
+                'promotion' => $z->Promotion,
+                'id' => $z->id,
+            ]);
+                    }
+                        
+            return view('modifierproduit', array('tab' => $myArray6));
 }
+
 public function modifierproduit1 (Request $req) {
     $var100=$req->nom;
     $var200=$req->prix;
@@ -372,14 +416,17 @@ function adminlogin1 (Request $req){
         ->where('mdp_admin', '=', $var200)
         ->where('nom_admin', '=', $var100)
         ->count();
+        $info= DB::table('admins')
+        ->select('nom_admin')
+        ->where('mdp_admin', '=', $var200)
+        ->where('nom_admin', '=', $var100);
         if ($admin>0) {
             $req->session()->put('admin',$admin);
-            
-            
-            return redirect ('/admin');
+           //$req->session()->put('users',$info);
+            return redirect ('admin');
         }
         else {
-            echo "Veuillez Verifier le nom et/ou le mot de passe";
+            echo "Mot de passe ou login incorrectes";
         }
 }
 public function contactpage () {
@@ -388,19 +435,21 @@ public function contactpage () {
 public function contactpage1 (Request $req) {
     $var99=$req->firstname;
     $var101=$req->lastname;
-    $var102=$req->subject;
+    $var102=$req->sujet;
     $var103=$req->email;
+    $var104=$req->message;
     DB::table('commentaires')->insert([
         'nom' => $var99,
         'prenom' => $var101,
         'sujet' => $var102,
-        'email'=> $var103
+        'email'=> $var103,
+        'message'=> $var104
     ]);
     return redirect('http://localhost/cms2/public/');
 }
 public function admincontact1 () {
     $NUM2 = DB::table('commentaires')
-    ->select('nom','prenom','sujet','id')
+    ->select('*')
     ->get();
     $myArray = [];
     $i=0;
@@ -411,6 +460,8 @@ public function admincontact1 () {
         'Nom' => $x->nom,
         'Prenom' => $x->prenom,
         'Sujet' => $x->sujet,
+        'Message' => $x->message,
+
     ]);
     }
 return view('admincontact1', array('tablo' => $myArray));
@@ -456,5 +507,218 @@ public function abonnement (Request $req) {
 function modifiercommande() 
 {
     return view ('modifiercommande');
+}
+public function modifiercommande1 (Request $req) {
+    $var100=$req->MoyendePayment;
+    $var200=$req->Etatdupaiement;
+    $var400=$req->idcmd;
+    $affected = DB::table('orders')
+            ->where('id','=',$var400)
+              ->update(['payment_method' => $var100,'payment_status' => $var200]);
+              return redirect ('admin');
+}
+public function novoproduit() {
+    return view ('novproduits');
+}
+public function remise() {
+    return view ('remise1');
+}
+public function abonnes () {
+    $NUM215 = DB::table('abonnes')
+    ->select('*')
+    ->get();
+    $myArray00 = [];
+    $i=0;
+    foreach($NUM215 as $x){
+        $i++;
+        array_push($myArray00, (object)[
+        'id' => $x->id,
+        'email' => $x->email,
+
+    ]);
+    }
+return view('abonnes', array('tablo1' => $myArray00));
+}
+public function supabon (Request $req) {
+    $deleted = DB::table('abonnes')->where('id','=',$req->rn)->delete();
+    return redirect('http://localhost/cms2/public/abonnes');
+
+}
+public function test() {
+    return view ('test1');
+}
+function adminlogin () {
+    return view ('test1');
+}
+function conproduit () {
+    return view ('conproduit');
+}
+function ModifAdmin1 (){
+    $NUM2 = DB::table('products')
+    ->select('name','price','stock','id','Promotion','price_promo')
+    ->get();
+    $myArray = [];
+    $i=0;
+    foreach($NUM2 as $x){
+        $i++;
+        array_push($myArray, (object)[
+        'Nom' => $x->name,
+        'Prix' => $x->price,
+        'Qte' => $x->stock,
+        'ID' => $x->id,
+        'Promotion' => $x->Promotion,
+        'Prix_promo' => $x->price_promo
+    ]);
+            }
+            $NUM2 = DB::table('users')
+    ->select('name','email','id')
+    ->get();
+    $myArray1 = [];
+    $t=0;
+    foreach($NUM2 as $n){
+        $t++;
+        array_push($myArray1, (object)[
+        'name' => $n->name,
+        'email' => $n->email,
+        'id' => $n->id,
+        
+    ]);
+            }
+            $NUM3 = DB::table('orders')
+            ->select('*')
+            ->get();
+            $myArray3 = [];
+            $c=0;
+            foreach($NUM3 as $z){
+                $c++;
+                array_push($myArray3, (object)[
+                'Adresse' => $z->adress,
+                'IDClient' => $z->user_id,
+                'IDProduit' => $z->product_id,
+                'PM' => $z->payment_method,
+                'PS' => $z->payment_status,
+                'n' => $z->id,
+                'nz' => $z->Amount,
+            ]);
+                    }
+                        
+            return view('admin2', array('tab' => $myArray,'tab1' => $myArray1,'tab3' => $myArray3));
+}
+function ModifAdmin2 (){
+    $NUM2 = DB::table('products')
+    ->select('name','price','stock','id','Promotion','price_promo')
+    ->get();
+    $myArray = [];
+    $i=0;
+    foreach($NUM2 as $x){
+        $i++;
+        array_push($myArray, (object)[
+        'Nom' => $x->name,
+        'Prix' => $x->price,
+        'Qte' => $x->stock,
+        'ID' => $x->id,
+        'Promotion' => $x->Promotion,
+        'Prix_promo' => $x->price_promo
+    ]);
+            }
+            $NUM2 = DB::table('users')
+    ->select('name','email','id')
+    ->get();
+    $myArray1 = [];
+    $t=0;
+    foreach($NUM2 as $n){
+        $t++;
+        array_push($myArray1, (object)[
+        'name' => $n->name,
+        'email' => $n->email,
+        'id' => $n->id,
+        
+    ]);
+            }
+            $NUM3 = DB::table('orders')
+            ->select('*')
+            ->get();
+            $myArray3 = [];
+            $c=0;
+            foreach($NUM3 as $z){
+                $c++;
+                array_push($myArray3, (object)[
+                'Adresse' => $z->adress,
+                'IDClient' => $z->user_id,
+                'IDProduit' => $z->product_id,
+                'PM' => $z->payment_method,
+                'PS' => $z->payment_status,
+                'n' => $z->id,
+                'nz' => $z->Amount,
+            ]);
+                    }
+                        
+            return view('admin3', array('tab' => $myArray,'tab1' => $myArray1,'tab3' => $myArray3));
+}
+function ModifAdmin3 (){
+    $NUM2 = DB::table('products')
+    ->select('name','price','stock','id','Promotion','price_promo')
+    ->get();
+    $myArray = [];
+    $i=0;
+    foreach($NUM2 as $x){
+        $i++;
+        array_push($myArray, (object)[
+        'Nom' => $x->name,
+        'Prix' => $x->price,
+        'Qte' => $x->stock,
+        'ID' => $x->id,
+        'Promotion' => $x->Promotion,
+        'Prix_promo' => $x->price_promo
+    ]);
+            }
+            $NUM2 = DB::table('users')
+    ->select('name','email','id')
+    ->get();
+    $myArray1 = [];
+    $t=0;
+    foreach($NUM2 as $n){
+        $t++;
+        array_push($myArray1, (object)[
+        'name' => $n->name,
+        'email' => $n->email,
+        'id' => $n->id,
+        
+    ]);
+            }
+            $NUM3 = DB::table('orders')
+            ->select('*')
+            ->get();
+            $myArray3 = [];
+            $c=0;
+            foreach($NUM3 as $z){
+                $c++;
+                array_push($myArray3, (object)[
+                'Adresse' => $z->adress,
+                'IDClient' => $z->user_id,
+                'IDProduit' => $z->product_id,
+                'PM' => $z->payment_method,
+                'PS' => $z->payment_status,
+                'n' => $z->id,
+                'nz' => $z->Amount,
+            ]);
+                    }
+                        
+            return view('admin4', array('tab' => $myArray,'tab1' => $myArray1,'tab3' => $myArray3));
+}
+function adminregister(){
+    return view ('adminregister');
+}
+function adminregister1(Request $req){
+  
+    $var2=$req->email;
+    $var3=$req->password;
+    DB::table('admins')->insert([
+        'nom_admin' => $var2,
+        'mdp_admin' => $var3
+        
+        
+    ]);
+    return redirect ('/adminlogin');
 }
 }

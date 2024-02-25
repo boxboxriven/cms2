@@ -15,7 +15,7 @@ $total= ProductController::cartItem();
 <link rel="stylesheet" type="text/css" href="<?=config('app.url');?>/cms2/styles/css/owl.carousel.css">
 <link rel="stylesheet" type="text/css" href="<?=config('app.url');?>/cms2/styles/css/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="<?=config('app.url');?>/cms2/styles/css/animate.css">
-<link rel="stylesheet" type="text/css" href="<?=config('app.url');?>/cms2/styles/css/main_styles.css">
+
 <link rel="stylesheet" type="text/css" href="<?=config('app.url');?>/cms2/styles/css/responsive.css">
 <!DOCTYPE html>
 <html lang="en">
@@ -32,22 +32,21 @@ $total= ProductController::cartItem();
 							<ul class="top_nav_menu">
 
 								<!-- Currency / Language / My Account -->
-								@if(Session::has('user'))
 								<li class="language">
-									<a href="/cms2/public/cartlist">
-										Panier({{$total}})
+									<a href="/cms2/public">
+									Accueil
 										<i class="arrow down"></i>
 									</a>
 								</li>
 								<li class="language">
-									<a href="/cms2/public/myorders">
-										Mes Achats
+									<a href="/cms2/public/about">
+										 A Propos
 										<i class="arrow down"></i>
 									</a>
 								</li>
 								<li class="account">
-									<a href="/cms2/public/logout">
-									Deconnexion de :  {{Session::get('user')['name']}}
+									<a href="/cms2/public/contactpage">
+									 Nous Contacter
 										
 									</a>
 								</li>
@@ -57,27 +56,6 @@ $total= ProductController::cartItem();
 				</div>
 			</div>
 		</div>
-		@else
-		<li class="language">
-									<a href="http://localhost/cms2/public/login">
-									S'identifer
-										<i class="arrow down"></i>
-									</a>
-								</li>
-								<li class="account">
-									<a href="http://localhost/cms2/public/register">
-									S'enregistrer
-										<i class="arrow down"></i>
-									</a>
-									
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		@endif
 		<!-- Main Navigation -->
 
 		<div class="main_nav_container">
@@ -89,9 +67,14 @@ $total= ProductController::cartItem();
 						</div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
-								<li><a href="/cms2/public/">Accueil</a></li>
-								<li><a href="/cms2/public/about">A Propos</a></li>
-								<li><a href="/cms2/public/contactpage">Nous Contacter</a></li>
+							    @if(Session::has('user'))
+							    <li><a href=" /cms2/public/cartlist"> Panier({{$total}})</a></li>
+								<li><a href=" /cms2/public/myorders">Mes Achats</a></li>
+								<li><a href=" /cms2/public/logout">Deconnexion de :  {{Session::get('user')['name']}}</a></li>
+								@else
+								<li><a href=" http://localhost/cms2/public/login">S'identifier</a></li>
+								<li><a href=" http://localhost/cms2/public/register">S'enregistrer</a></li>
+								@endif
 							</ul>
 							<div class="hamburger_container">
 								<i class="fa fa-bars" aria-hidden="true"></i>
@@ -102,8 +85,7 @@ $total= ProductController::cartItem();
 			</div>
 		</div>
   <link rel="stylesheet" media="all" href="https://cdn.shopify.com/shopifycloud/brochure/assets/application-b89bda94c5a8d73f1b252e94930d2f98c09d0554fc7c72c241187d1a2d491ed4.css">
-  <link rel="stylesheet" media="screen" href="https://cdn.shopify.com/shopifycloud/brochure/assets/manifests/about-acf30d40008e759a13f0a6665b0687e6380f781bc68bc1299be8d56bd43161a0.css">
-  <link rel="alternate" hreflang="en" href="https://www.shopify.com/about">
+  <link rel="stylesheet" type="text/css" href="<?=config('app.url');?>/cms2/styles/css/main_styles.css">
 <section class="section about-hero">
   <div class="grid about-hero__grid">
     <div class="grid__item grid__item--tablet-up-half about-hero__content">

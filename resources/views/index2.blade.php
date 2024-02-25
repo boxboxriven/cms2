@@ -5,6 +5,18 @@ if (Session::has('user'))
 $total= ProductController::cartItem();
 ?>
 
+<style>
+	.button1 {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 1px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+}
+</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,22 +55,22 @@ $total= ProductController::cartItem();
 							<ul class="top_nav_menu">
 
 								<!-- Currency / Language / My Account -->
-								@if(Session::has('user'))
+								
 								<li class="language">
-									<a href="/cms2/public/cartlist">
-										Panier({{$total}})
+									<a href="/cms2/public">
+									Accueil
 										<i class="arrow down"></i>
 									</a>
 								</li>
 								<li class="language">
-									<a href="/cms2/public/myorders">
-										Mes Achats
+									<a href="/cms2/public/about">
+										 A Propos
 										<i class="arrow down"></i>
 									</a>
 								</li>
 								<li class="account">
-									<a href="/cms2/public/logout">
-									Deconnexion de :  {{Session::get('user')['name']}}
+									<a href="/cms2/public/contactpage">
+									 Nous Contacter
 										
 									</a>
 								</li>
@@ -68,27 +80,7 @@ $total= ProductController::cartItem();
 				</div>
 			</div>
 		</div>
-		@else
-		<li class="language">
-									<a href="http://localhost/cms2/public/login">
-									S'identifer
-										<i class="arrow down"></i>
-									</a>
-								</li>
-								<li class="account">
-									<a href="http://localhost/cms2/public/register">
-									S'enregistrer
-										<i class="arrow down"></i>
-									</a>
-									
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		@endif
+
 		<!-- Main Navigation -->
 
 		<div class="main_nav_container">
@@ -100,9 +92,45 @@ $total= ProductController::cartItem();
 						</div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
-								<li><a href="/cms2/public/">Accueil</a></li>
-								<li><a href="/cms2/public/about">A Propos</a></li>
-								<li><a href="/cms2/public/contactpage">Nous Contacter</a></li>
+							@if(Session::has('user'))
+							<!doctype html>
+<html>
+<head>
+<style>
+
+</style>
+</head>
+
+</html>
+								
+								<li><a href=" /cms2/public/cartlist"> Panier({{$total}})</a></li>
+								<li><a href=" /cms2/public/myorders">Mes Achats</a></li>
+								<li><a href=" /cms2/public/logout">Deconnexion de :  {{Session::get('user')['name']}}</a></li>
+								<li><body>
+<form method="get" action="http://localhost/cms2/public/search">				
+	<div class="input-group">
+  <input name="search" type="search" class="form-control rounded" placeholder="" aria-label="Search" aria-describedby="search-addon" required />
+  <button type="submit" class="btn btn-outline-primary">Rechercher</button>
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+</div>	
+</form>
+</body>
+</li>	
+								@else
+								
+								<li><a href=" http://localhost/cms2/public/login">S'identifier</a></li>
+								<li><a href=" http://localhost/cms2/public/register">S'enregistrer</a></li>
+								<li><body>
+<form method="get" action="http://localhost/cms2/public/search">				
+	<div class="input-group">
+  <input name="search" type="search" class="form-control rounded" placeholder="" aria-label="Search" aria-describedby="search-addon" required />
+  <button type="submit" class="btn btn-outline-primary">Rechercher</button>
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+</div>	
+</form>
+</body>
+</li>	
+								@endif
 							</ul>
 							<div class="hamburger_container">
 								<i class="fa fa-bars" aria-hidden="true"></i>
@@ -144,7 +172,7 @@ $total= ProductController::cartItem();
 					<div class="new_arrivals_sorting">
 						<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
 							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">Toutes les cartes</li>
-							
+
 						</ul>
 					</div>
 				</div>
@@ -177,17 +205,24 @@ $total= ProductController::cartItem();
 			</div>
 		</div>
 	</div>
-	<!-- Newsletter -->
-	@if(Session::has('user'))
-	<span>	</span>
-	@else
-	<div class="newsletter">
+<table class="t1" style="width:100%; padding:20px; margin-top:50px; margin-bottom:10px; text-align: left;
+		background-color:#f2f2f2">
+<tr>
+	<td style="width:15%; height: 250px;">
+							<a href="/cms2/public/"><img class="fit-picture"
+     src="<?=config('app.url');?>/cms2/images/1.png"
+     alt="TUNISIE-GPU"></a>
+						</td>
+	<td style="width:20%; line-height: 40px; padding-left:70px;">Contact<br>
+Tel:27680223 
+<br style=" line-height: 40px;" 	> Email:ahmedtriki.triki5@gmail.com</td>
+	<td style="width:65%;"><div class="newsletter" style="margin-top:0px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
-						<h4>S'abonner a notre courrier éléctronique</h4>
-						<p>Abonnez vous et recevez une remise de 10% sur votre prochain article</p>
+					<div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center " style=" line-height: 40px;">
+						<h4 style=" line-height: 40px;">S'abonner a notre courrier éléctronique</h4>
+						<p style=" line-height: 40px;" >Abonnez vous et recevez toutes les nouvelles instantanément sur votre mail</p>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -200,39 +235,9 @@ $total= ProductController::cartItem();
 				</div>	
 			</div>
 		</div>
-	</div>
-	@endif
-	<!-- Footer -->
-
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
-						<ul class="footer_nav">
-							<li><a href="/cms2/public/contactpage">Questions ? N'hesitez pas a nous contacter</a></li>
-							
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
-						
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="footer_nav_container">
-						<div class="cr">2022 Tous les droits resérvées par  <span>Triki's</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-
-</div>
-
+	</div></td>
+</tr>
+</table>
 <script src="<?=config('app.url');?>/cms2/styles/css/jquery-3.2.1.min.js"></script>
 <script src="<?=config('app.url');?>/cms2/styles/css/popper.js"></script>
 <script src="<?=config('app.url');?>/cms2/styles/css/bootstrap.min.js"></script>
@@ -240,6 +245,10 @@ $total= ProductController::cartItem();
 <script src="<?=config('app.url');?>/cms2/styles/css/owl.carousel.js"></script>
 <script src="<?=config('app.url');?>/cms2/styles/css/easing.js"></script>
 <script src="<?=config('app.url');?>/cms2/styles/css/custom.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
+
 
 </html>
