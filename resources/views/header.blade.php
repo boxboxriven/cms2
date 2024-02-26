@@ -20,7 +20,6 @@ $total= ProductController::cartItem();
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-<<<<<<< HEAD
 						<div class="top_nav_left">E-Lectronic</div>
 					</div>
 					<div class="col-md-6 text-right">
@@ -49,7 +48,7 @@ $total= ProductController::cartItem();
 								</li>
 							</ul>
 						</div>
-=======
+
 						<div class="top_nav_left">Cabinet Dr. Med Chokri Triki</div>
 					</div>
 					<div class="col-md-6 text-right">
@@ -59,7 +58,6 @@ $total= ProductController::cartItem();
 
 									</a>
 								</li>
->>>>>>> 35af6329cdd16494949b6c73ce5153cbda0f696d
 					</div>
 				</div>
 			</div>
@@ -80,11 +78,11 @@ $total= ProductController::cartItem();
 								<li><a href=" /cms2/public/myorders">Mes Achats</a></li>
 								<li><a href=" /cms2/public/logout">Deconnexion de :  {{Session::get('user')['name']}}</a></li>
 								@else
-<<<<<<< HEAD
+
 								<li><a href=" http://localhost/cms2/public/login">S'identifier</a></li>
-=======
+
 								<li style="font-size=20" ><a href=" http://localhost/cms2/public/login">S'identifier</a></li>
->>>>>>> 35af6329cdd16494949b6c73ce5153cbda0f696d
+
 								<li><a href=" http://localhost/cms2/public/register">S'enregistrer</a></li>
 								@endif
 							</ul>
@@ -96,4 +94,3 @@ $total= ProductController::cartItem();
 				</div>
 			</div>
 		</div>
-

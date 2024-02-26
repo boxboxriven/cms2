@@ -23,10 +23,9 @@
     <p style = "font-family:Calibri;font-size:25px;" >Vous Avez Deja un Compte? <a style = "font-family:Calibri;font-size:25px;" href="/cms2/public/login">S'identifier maintenant</a>.</p>
   </div>
 </form>
-<style>
-  </body>
-{box-sizing: border-box}
+</body>
 
+<style>
 /* Add padding to containers */
 
 
