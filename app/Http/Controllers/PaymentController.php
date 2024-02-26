@@ -20,7 +20,7 @@ $charge = Charge::create([
 return response()->json(['message' => 'Paiement réussi']);
 }
 catch (\Exception $e) {
-return response()->json(['error' => $e->getMessage()], 400);
+return response()->json(['error' => $e->getMessage()], 501);
 }
 }
 }
