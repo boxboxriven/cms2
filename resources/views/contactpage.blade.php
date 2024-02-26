@@ -35,16 +35,22 @@ $total= ProductController::cartItem();
 							<ul class="top_nav_menu">
 
 								<!-- Currency / Language / My Account -->
-								@if(Session::has('user'))
+								
 								<li class="language">
-									<a href="/cms2/public/cartlist">
-										Panier({{$total}})
+									<a href="/cms2/public">
+									Accueil
+										<i class="arrow down"></i>
+									</a>
+								</li>
+								<li class="language">
+									<a href="/cms2/public/about">
+										 A Propos
 										<i class="arrow down"></i>
 									</a>
 								</li>
 								<li class="account">
-									<a href="/cms2/public/logout">
-									Deconnexion de :  {{Session::get('user')['name']}}
+									<a href="/cms2/public/contactpage">
+									 Nous Contacter
 										
 									</a>
 								</li>
@@ -54,27 +60,7 @@ $total= ProductController::cartItem();
 				</div>
 			</div>
 		</div>
-		@else
-		<li class="language">
-									<a href="http://localhost/cms2/public/login">
-									S'identifer
-										<i class="arrow down"></i>
-									</a>
-								</li>
-								<li class="account">
-									<a href="http://localhost/cms2/public/register">
-									S'enregistrer
-										<i class="arrow down"></i>
-									</a>
-									
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		@endif
+		
 		<!-- Main Navigation -->
 
 		<div class="main_nav_container">
@@ -86,9 +72,14 @@ $total= ProductController::cartItem();
 						</div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
-								<li><a href="/cms2/public/">Accueil</a></li>
-								<li><a href="/cms2/public/about">A Propos</a></li>
-								<li><a href="/cms2/public/contactpage">Nous Contacter</a></li>
+              @if(Session::has('user'))
+								<li><a href=" /cms2/public/cartlist"> Panier({{$total}})</a></li>
+								<li><a href=" /cms2/public/myorders">Mes Achats</a></li>
+								<li><a href=" /cms2/public/logout">Deconnexion de :  {{Session::get('user')['name']}}</a></li>
+								@else
+								<li><a href=" http://localhost/cms2/public/login">S'identifier</a></li>
+								<li><a href=" http://localhost/cms2/public/register">S'enregistrer</a></li>
+								@endif
 							</ul>
 							<div class="hamburger_container">
 								<i class="fa fa-bars" aria-hidden="true"></i>
@@ -102,7 +93,7 @@ $total= ProductController::cartItem();
     <section id="contact">
   <div class="contact-box">
     <div class="contact-links">
-      <h2>Ici vous pouvez nous contacter </h2>
+      <h2>ICI VOUS POUVEZ NOUS CONTACTER </h2>
      
     </div>
     
@@ -115,18 +106,22 @@ $total= ProductController::cartItem();
         </div>
         <div class="form-item">
           
-        <input placeholder="Email"  type="text" name="email" required >
+        <input placeholder="Email"  type="email" name="email" required >
         </div>
         <div class="form-item">
           
           <input placeholder="Prenom"  type="text" name="lastname" required >
         </div>
         <div class="form-item">
+
+        <input placeholder="Sujet"  type="text" name="sujet" required >
+        </div>
+        <div class="form-item">
           
         
-          <textarea  name="subject" required placeholder="Message" ></textarea>
+          <textarea  name="message" required placeholder="Message" ></textarea>
         </div>
-        <button class="submit-btn">Send</button>  
+        <button class="submit-btn">Envoyer message</button>  
       </form>
     </div>
   </div>
@@ -214,7 +209,7 @@ body {
 }
 
 h2 {
-  font-family: 'Arimo', sans-serif;
+  
   color: #fff;
   font-size: clamp(30px, 6vw, 60px);
   letter-spacing: 2px;
@@ -261,7 +256,7 @@ img:active {
 }
 
 label, input, textarea {
-  font-family: 'Poppins', sans-serif;
+  
 }
 
 label {
@@ -298,7 +293,7 @@ textarea:valid+label {
   background-color: #fd917e;
   filter: drop-shadow(2px 2px 3px #0003);
   color: #fff;
-  font-family: "Poppins",sans-serif;
+  
   font-size: clamp(16px, 1.6vw, 18px);
   display: block;
   padding: 12px 20px;

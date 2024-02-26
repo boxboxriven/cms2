@@ -19,8 +19,8 @@
               </div>
               <div class=col-sm-4> 
                   <div class="">
-                  <h2>Qte Demandée :{{$item->cart_TotalAmount}}</h2>
-                  <h2>{{$item->name}}</h2>
+                  <h3>Qte Demandée :{{$item->cart_TotalAmount}}</h2>
+                  <h4>{{$item->name}}</h2>
                   <h5>{{$item->description}}</h5>
                  </div>
               </div>

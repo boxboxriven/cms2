@@ -5,20 +5,20 @@
        <table class="table">
        <tbody>
          <tr>
-           <td>Montant</td>
+           <td>Montant hors taxes</td>
            <td>{{$total}} DT</td>
          </tr>
          <tr>
-           <td>Tax (Fixé pour Toutes les Articles)</td>
-           <td>5 DT </td>
+           <td>Taxes </td>
+           <td>{{($total*19)/100}} DT</td>
          </tr>
          <tr>
-           <td>Livraison (Fixé pour Toutes les Articles)</td>
+           <td>Livraison (Fixe pour Tout les Articles)</td>
            <td>10 DT</td>
          </tr>
          <tr>
            <td>Total A Payer</td>
-           <td>{{$total+15}} DT</td>
+           <td>{{$total+(($total*19)/100)+10}} DT</td>
          </tr>
        </tbody>
      </table>
@@ -26,11 +26,12 @@
      <form action="orderplace" method="get">
         @csrf
   <div class="form-group">
-    <textarea name="adress" type="text" placeholder="Entrer Votre Adresse Ici" class="form-control" required ></textarea>
+    <input name="adress" type="text" placeholder="Adresse de livraison" class="form-control" required >
   </div>
   <div class="form-group">
     <label for="pwd">Methode de payement</label> <br> <br>
     <p>
+    <input type="hidden" name="total" value="{{$total+(($total*19)/100)+10}}">
     <input type="radio" value="En Ligne" name="payment"> <span>Payement En Ligne</span> <br> <br>
     <input type="radio" value="Espéces" name="payment"> <span>Payement Sur Place</span> <br> <br>
     <input type="radio" value="Par des tranches" name="payment"> <span>Payement Sur des Tranches</span> <br> <br>

@@ -8,7 +8,7 @@
   <div class="form-group">
       @csrf
     <label style = "font-family:Calibri;font-size:25px;" for="exampleInputEmail1">Adresse email</label>
-    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Indiquer votre adresse email ici">
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Indiquer votre adresse email ici" required>
   </div>
   <div class="form-group">
     <label style = "font-family:Calibri;font-size:25px;" for="exampleInputPassword1">Mot De passe</label>

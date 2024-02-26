@@ -4,13 +4,14 @@
    <div class="row">
       <div class="col-sm-6">
       <img class="detail-img" src="{{$product['gallerie']}}" alt="">
-      <div class="discount-label  black"> <span>{{$product['Promotion']}}%</span> </div>
+
     </div>
     <div class="col-sm-6" >
         <a  href="<?=config('app.url');?>/cms2/public/">Retour Arriére</a>
         <div class="badge badge-pill badge-info">{{$stock}}</FONT></div>
         <h2 style = "font-family:Calibri;font-size:30px;"><FONT COLOR=""black">Nom du produit : {{$product['name']}}</FONT></h2>
         <h2 style = "font-family:Calibri;font-size:30px;"><s><FONT COLOR="black"> Prix : {{$product['price']}} DT </FONT> </s></h2>
+        <h2 style = "font-family:Calibri;font-size:30px;"><FONT COLOR="black"> Promotion : {{$product['Promotion']}} % </FONT> </s></h2>
         <h2 style = "font-family:Calibri;font-size:30px;"><FONT COLOR="Red"> Prix aprés promotion: {{$product['price_promo']}} DT</FONT> </h2>
         <h2 style = "font-family:Calibri;font-size:30px;"><FONT COLOR=""black">Description : {{$product['description']}}</FONT></h2>
         <h2 style = "font-family:Calibri;font-size:30px;"><FONT COLOR=""black  ">Catégorie : {{$product['catégorie']}}</FONT></h2>
