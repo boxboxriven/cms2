@@ -38,7 +38,7 @@
     </p>
   </div>
   </div>
-  <button type="submit" class="btn btn-default">Continuer</button>
+  <button type="submit" class="btn btn-success"><strong><font size="4">Continuer</font></strong></button>
 </form>
      </div>
     </div>

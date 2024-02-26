@@ -253,11 +253,19 @@ use  App\Http\Controllers\UserController;
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
+<<<<<<< HEAD
             <h1 class="m-0">Acceuil</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Acceuil</a></li>
+=======
+            <h1 class="m-0">Accueil </h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+>>>>>>> 35af6329cdd16494949b6c73ce5153cbda0f696d
               <li class="breadcrumb-item active">Panneau d'administration</li>
             </ol>
           </div><!-- /.col -->

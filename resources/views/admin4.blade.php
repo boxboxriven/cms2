@@ -279,7 +279,10 @@ use  App\Http\Controllers\UserController;
         <th>Moyen de Payment</th>
         <th>Etat du paiement</th>
         <th>Quantité demandée</th>
+<<<<<<< HEAD
         <th>Supprimer cette commande</th>
+=======
+>>>>>>> 35af6329cdd16494949b6c73ce5153cbda0f696d
         <th>Modifier une commande</th>
       </tr>
     </head>
@@ -305,7 +308,10 @@ use  App\Http\Controllers\UserController;
       <td ><?php echo  $variable5 ?></td>  
       <td ><?php echo  $variable7 ?></td>  
       
+<<<<<<< HEAD
       <td><a class='btn btn-danger' href= 'http://localhost/cms2/public/supprimercommande?rn=<?php echo $variable6;?>'>Supprimer Commande</a></td>
+=======
+>>>>>>> 35af6329cdd16494949b6c73ce5153cbda0f696d
       <td><a class='btn btn-info' href= 'http://localhost/cms2/public/modifiercommande?rh=<?php echo $variable6;?>'>Modifier Commande</a></td>
 
       </tr>

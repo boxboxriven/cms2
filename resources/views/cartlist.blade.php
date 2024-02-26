@@ -25,12 +25,12 @@
                  </div>
               </div>
               <div class=col-sm-3> 
-                  <a href="/cms2/public/removecart/{{$item->product_id}},{{$item->cart_id}}" class="btn btn-warning">Supprimer du panier</a></button> 
+                  <a  href="/cms2/public/removecart/{{$item->product_id}},{{$item->cart_id}}" class="btn btn-warning" style="font-size:15px;">Supprimer du panier</a></button> 
               </div>    
               </div>
               @endforeach
               </div>
-              <a class="btn btn-success" href="ordernow">Commander Maintenant</a> <br> <br>
+              <a class="btn btn-success" href="ordernow" style="font-size:25px;">Commander Maintenant</a> <br> <br>
              @else
              Il n'ya pas encore des produits, revenez vers le magasin pour commander.
 @endif

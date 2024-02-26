@@ -7,7 +7,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <title>Creative Colorlib SignUp Form</title>
+=======
+<title>S'enregistrer
+
+</title>
+>>>>>>> 35af6329cdd16494949b6c73ce5153cbda0f696d
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>

@@ -299,10 +299,10 @@ use  App\Http\Controllers\UserController;
   <form action="/cms2/public/repondrecommentaire1" method="post">
   @csrf
     <label for="fname">Votre nom et Prenom </label>
-    <input type="text" id="fname" name="nomadmin" placeholder="">
+    <input type="text" id="fname" name="nomadmin" placeholder="" required>
 
     <label for="lname">Votre reponse</label>
-    <input type="text" id="lname" name="reponse" placeholder="">
+    <input type="text" id="lname" name="reponse" placeholder="" required>
     <input type="number" name="realid" value="<?php echo $_REQUEST['rn'] ?>" hidden> 
     <input type="submit" value="Envoyer la reponse au client">
   </form>

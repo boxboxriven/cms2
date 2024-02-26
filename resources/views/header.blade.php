@@ -20,6 +20,7 @@ $total= ProductController::cartItem();
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
+<<<<<<< HEAD
 						<div class="top_nav_left">E-Lectronic</div>
 					</div>
 					<div class="col-md-6 text-right">
@@ -48,6 +49,17 @@ $total= ProductController::cartItem();
 								</li>
 							</ul>
 						</div>
+=======
+						<div class="top_nav_left">Cabinet Dr. Med Chokri Triki</div>
+					</div>
+					<div class="col-md-6 text-right">
+								<li class="language">
+									<a href="/cms2/public">
+									V 1.0
+
+									</a>
+								</li>
+>>>>>>> 35af6329cdd16494949b6c73ce5153cbda0f696d
 					</div>
 				</div>
 			</div>
@@ -59,7 +71,7 @@ $total= ProductController::cartItem();
 				<div class="row">
 					<div class="col-lg-12 text-right">
 						<div class="logo_container">
-							<a href="/cms2/public/">Tunisie-<span>GPU</span></a>
+							<a href="/cms2/public/">Bienvenue <span></span></a>
 						</div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
@@ -68,7 +80,11 @@ $total= ProductController::cartItem();
 								<li><a href=" /cms2/public/myorders">Mes Achats</a></li>
 								<li><a href=" /cms2/public/logout">Deconnexion de :  {{Session::get('user')['name']}}</a></li>
 								@else
+<<<<<<< HEAD
 								<li><a href=" http://localhost/cms2/public/login">S'identifier</a></li>
+=======
+								<li style="font-size=20" ><a href=" http://localhost/cms2/public/login">S'identifier</a></li>
+>>>>>>> 35af6329cdd16494949b6c73ce5153cbda0f696d
 								<li><a href=" http://localhost/cms2/public/register">S'enregistrer</a></li>
 								@endif
 							</ul>
