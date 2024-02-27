@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Database\Query\Builder;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +17,10 @@ use App\Http\Controllers\PaymentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/login', 'AuthController@login')->name('login');
+Route::get('/auth/google', 'AuthController@redirectToGoogle')->name('auth.google');
+Route::get('/auth/google/callback', 'AuthController@handleGoogleCallback');
+Route::get('/', 'ProductController@index')->middleware('auth');
 
 Route::get('/login', function () {
     return view('login');
@@ -28,7 +33,7 @@ Route::get('/logout', function () {
 
 Route::view('/payment','payment');
 Route::view('/register','register');
-Route::post("/login", [UserController::class,'login']);
+Route::post("/login", [UserController::class,'login'])->name('login');
 Route::post("/register", [UserController::class,'register']);
 Route::get("/", [ProductController::class,'index']);
 Route::get("/detail/{id}", [ProductController::class,'detail']);
