@@ -48,16 +48,6 @@ $total= ProductController::cartItem();
 								</li>
 							</ul>
 						</div>
-
-						<div class="top_nav_left">Cabinet Dr. Med Chokri Triki</div>
-					</div>
-					<div class="col-md-6 text-right">
-								<li class="language">
-									<a href="/cms2/public">
-									V 1.0
-
-									</a>
-								</li>
 					</div>
 				</div>
 			</div>
@@ -78,11 +68,7 @@ $total= ProductController::cartItem();
 								<li><a href=" /cms2/public/myorders">Mes Achats</a></li>
 								<li><a href=" /cms2/public/logout">Deconnexion de :  {{Session::get('user')['name']}}</a></li>
 								@else
-
 								<li><a href=" http://localhost/cms2/public/login">S'identifier</a></li>
-
-								<li style="font-size=20" ><a href=" http://localhost/cms2/public/login">S'identifier</a></li>
-
 								<li><a href=" http://localhost/cms2/public/register">S'enregistrer</a></li>
 								@endif
 							</ul>
