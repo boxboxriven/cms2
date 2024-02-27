@@ -17,19 +17,14 @@ use App\Http\Controllers\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/login', 'AuthController@login')->name('login');
-Route::get('/auth/google', 'AuthController@redirectToGoogle')->name('auth.google');
-Route::get('/auth/google/callback', 'AuthController@handleGoogleCallback');
-Route::get('/', 'ProductController@index')->middleware('auth');
+Route::get('/login', [AuthController::class,'login'])->name('login');
+Route::get('/auth/google', [AuthController::class,'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [AuthController::class,'handleGoogleCallback']);
+Route::get('/', [ProductController::class,'index'])->middleware('auth');
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', function () {return view('login');});
 
-Route::get('/logout', function () {
-    Session::forget('user');
-    return redirect('login');
-});
+Route::get('/logout', function () {Session::forget('user');return redirect('login');});
 
 Route::view('/payment','payment');
 Route::view('/register','register');

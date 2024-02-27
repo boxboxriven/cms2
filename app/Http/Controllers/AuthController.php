@@ -3,39 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
-use App\Models\User;
-use Auth;
+use Kreait\Firebase\Factory;
+use Kreait\Firebase\Auth;
 
 class AuthController extends Controller
 {
-    public function login()
+    protected $auth;
+
+    public function __construct(Auth $auth)
     {
-        return view('login');
+        $this->auth = $auth;
     }
 
-    public function redirectToGoogle()
+    public function login(Request $request)
     {
-        return Socialite::driver('google')->redirect();
+        $email = $request->input('email');
+        $password = $request->input('password');
+    
+        try {
+            $user = $this->auth->signInWithEmailAndPassword($email, $password);
+            // L'utilisateur est authentifié avec succès
+        } catch (\Exception $e) {
+            // Une erreur s'est produite lors de l'authentification
+        }
     }
 
-    public function handleGoogleCallback()
-    {
-        $user = Socialite::driver('google')->user();
-        // Your logic to handle the user data returned by Google
-
-        // For example:
-        // $existingUser = User::where('email', $user->email)->first();
-        // if (!$existingUser) {
-        //     $newUser = new User();
-        //     $newUser->name = $user->name;
-        //     $newUser->email = $user->email;
-        //     $newUser->save();
-        //     Auth::login($newUser);
-        // } else {
-        //     Auth::login($existingUser);
-        // }
-
-        return redirect()->route('home'); // Redirect to home or any other route
-    }
 }
