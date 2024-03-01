@@ -8,13 +8,13 @@
   <div class="container">
     <h1 style = "font-family:Calibri;font-size:45px;" >S'enregistrer</h1>
     <label style = "font-family:Calibri;font-size:25px;" for="email"><b>Votre Nom</b></label>
-    <input style = "font-family:Calibri;font-size:20px;" type="text" placeholder="Entrer Votre Nom" name="name" id="email" required>
+    <input style = "font-family:Calibri;font-size:20px;" type="text" placeholder="Entrer Votre Nom" name="name" id="name" required>
 
     <label style = "font-family:Calibri;font-size:25px;" for="psw"><b>Votre Email</b></label>
-    <input style = "font-family:Calibri;font-size:20px;" type="text" placeholder="Enter Votre email" name="email" id="psw" required>
+    <input style = "font-family:Calibri;font-size:20px;" type="text" placeholder="Enter Votre email" name="email" id="email" required>
 
     <label style = "font-family:Calibri;font-size:25px;" for="psw-repeat"><b>Mot De passse</b></label>
-    <input style = "font-family:Calibri;font-size:20px;" type="password" placeholder="Enter un mot de passe" name="password" id="psw-repeat" required>
+    <input style = "font-family:Calibri;font-size:20px;" type="password" placeholder="Enter un mot de passe" name="password" id="psw" required>
     <input type="hidden" id="social-login-tokenId" name="token">
 
     <hr>
@@ -25,6 +25,11 @@
     <p style = "font-family:Calibri;font-size:25px;" >Vous Avez Deja un Compte? <a style = "font-family:Calibri;font-size:25px;" href="/cms2/public/login">S'identifier maintenant</a>.</p>
   </div>
 </form>
+<div class="mb-0 text-center">
+      <a class="btn mt-3 shadow-lg bg-white rounded" onclick="socialSignin('google');">
+        <img width="400px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://onymos.com/wp-content/uploads/2020/10/google-signin-button.png" />
+      </a>
+    </div>
 </body>
 
 <style>
@@ -103,7 +108,16 @@ a {
       var result = await firebase.auth().signInWithPopup(googleProvider);
       var token = await result.user.getIdToken();
       document.getElementById('social-login-tokenId').value = token;
-      document.getElementById('social-login-form').action = googleCallbackLink;
+     //document.getElementById('social-login-form').action = googleCallbackLink;
+     document.getElementById('email').value = result.user.email;
+     document.getElementById('name').value = result.user.displayName;
+     document.getElementById('name').hidden=true;
+     document.getElementById('email').hidden=true;
+     document.getElementById('psw').hidden=true;
+
+     document.getElementById('psw').value = "123";
+
+
       document.getElementById('social-login-form').submit();
     } catch (error) {
       console.log(error);

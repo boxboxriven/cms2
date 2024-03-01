@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\admin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Psy\Readline\Hoa\Console;
+
 class UserController extends Controller
 {
     //
