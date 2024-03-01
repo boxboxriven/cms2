@@ -80,4 +80,3 @@ $total= ProductController::cartItem();
 				</div>
 			</div>
 		</div>
-

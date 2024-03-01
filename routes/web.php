@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
@@ -47,6 +47,7 @@ Route::get("/ajouterclient", [ProductController::class,'ajouterclient']);
 Route::post("/ajouterclient1", [ProductController::class,'ajouterclient1']);
 Route::get("/supprimerclient", [ProductController::class,'supprimerclient']);
 Route::get("/suprimerproduit", [ProductController::class,'suprimerproduit']);
+Route::get("/taieb", [ProductController::class,'taieb']);
 Route::get("/supprimercommande", [ProductController::class,'suprimercommande']);
 Route::get("/modifierproduit", [ProductController::class,'modifierproduit']);
 Route::get("/modifierproduit1", [ProductController::class,'modifierproduit1']);

@@ -7,6 +7,7 @@
     <title>Gestion de stock</title>
     <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="<?=config('app.url');?>/cms2/resources/css1/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-axw1wqt61o3hq1dixl5ln1wv+LeEoXevZx1PEHczqNOlnxqf1QOxDc5KYSBpLiAUElIljLCW9Xq4H3KZe9AdPA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Optional theme -->
 <script
