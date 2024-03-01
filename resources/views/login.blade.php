@@ -42,11 +42,7 @@
   firebase.initializeApp(config);
 
   var googleProvider = new firebase.auth.GoogleAuthProvider();
-<<<<<<< HEAD
-  var googleCallbackLink = '/cms2/public';
-=======
   var googleCallbackLink = '/cms2/public/about';
->>>>>>> b6eaf678a1811464090f50fa5dceee73fefce0a5
 
   async function socialSignin(provider) {
     try {
