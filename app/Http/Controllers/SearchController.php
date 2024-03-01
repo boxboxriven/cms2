@@ -10,7 +10,8 @@ use Validator, Redirect;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use Illuminate\Support\Facades\Input;
-use App\Http\Controllers\SearchController;
+
+
 use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller

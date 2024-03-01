@@ -25,11 +25,6 @@
     <p style = "font-family:Calibri;font-size:25px;" >Vous Avez Deja un Compte? <a style = "font-family:Calibri;font-size:25px;" href="/cms2/public/login">S'identifier maintenant</a>.</p>
   </div>
 </form>
-<div class="mb-0 text-center">
-      <a class="btn mt-3 shadow-lg bg-white rounded" onclick="socialSignin('google');">
-        <img width="400px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://onymos.com/wp-content/uploads/2020/10/google-signin-button.png" />
-      </a>
-    </div>
 </body>
 
 <style>

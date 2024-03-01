@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
 
-    <form id="social-login-form" action="login" method="post">
+    <form id="social-login-form" action="login" method="get">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <input type="hidden" id="social-login-tokenId" name="tokenId" value="">
       <div class="form-group">
@@ -42,7 +42,11 @@
   firebase.initializeApp(config);
 
   var googleProvider = new firebase.auth.GoogleAuthProvider();
+<<<<<<< HEAD
   var googleCallbackLink = '/cms2/public';
+=======
+  var googleCallbackLink = '/cms2/public/about';
+>>>>>>> b6eaf678a1811464090f50fa5dceee73fefce0a5
 
   async function socialSignin(provider) {
     try {
