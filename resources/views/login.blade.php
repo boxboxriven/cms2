@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
 
-    <form id="social-login-form" action="login" method="GET">
+    <form id="social-login-form" action="login" method="get">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <input type="hidden" id="social-login-tokenId" name="tokenId" value="">
       <div class="form-group">
@@ -19,8 +19,7 @@
     </form>
     <div class="mb-0 text-center">
       <a class="btn mt-3 shadow-lg bg-white rounded" onclick="socialSignin('google');">
-        <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-        <span class="fa fa-google"></span> Sign in with Google
+        <img width="400px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://onymos.com/wp-content/uploads/2020/10/google-signin-button.png" />
       </a>
     </div>
   </div>
@@ -43,7 +42,7 @@
   firebase.initializeApp(config);
 
   var googleProvider = new firebase.auth.GoogleAuthProvider();
-  var googleCallbackLink = '/cms2/public/';
+  var googleCallbackLink = '/cms2/public/about';
 
   async function socialSignin(provider) {
     try {
