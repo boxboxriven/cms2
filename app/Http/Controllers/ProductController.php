@@ -311,6 +311,18 @@ public function ajouter (Request $req) {
     return view('ajouter');
 }
 
+    function taieb(Request $req)
+    {
+        if($req){   
+        $data= Product::all();
+        return view ('taieb',['products'=>$data]);
+    }else{echo 'eror';}
+    }
+   
+
+
+
+
 public function ajouter1 (Request $req) {
     $var1=$req->nom;
     $var2=$req->prix;
