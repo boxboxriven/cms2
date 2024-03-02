@@ -6,7 +6,6 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Database\Query\Builder;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,18 +16,19 @@ use App\Http\Controllers\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/login', [AuthController::class,'login'])->name('login');
-Route::get('/auth/google', [AuthController::class,'redirectToGoogle'])->name('auth.google');
-Route::get('/auth/google/callback', [AuthController::class,'handleGoogleCallback']);
-Route::get('/', [ProductController::class,'index'])->middleware('auth');
 
-Route::get('/login', function () {return view('login');});
+Route::get('/login', function () {
+    return view('login');
+});
 
-Route::get('/logout', function () {Session::forget('user');return redirect('login');});
+Route::get('/logout', function () {
+    Session::forget('user');
+    return redirect('login');
+});
 
 Route::view('/payment','payment');
 Route::view('/register','register');
-Route::post("/login", [UserController::class,'login'])->name('login');
+Route::post("/login", [UserController::class,'login']);
 Route::post("/register", [UserController::class,'register']);
 Route::get("/", [ProductController::class,'index']);
 Route::get("/detail/{id}", [ProductController::class,'detail']);
@@ -81,4 +81,3 @@ Route::get("/admin4", [ProductController::class,'ModifAdmin3']);
 Route::get("/adminregister", [ProductController::class,'adminregister']);
 Route::get("/adminregister1", [ProductController::class,'adminregister1']);
 Route::post('/process-payment', [PaymentController::class, 'createPaymentIntent']);
-
