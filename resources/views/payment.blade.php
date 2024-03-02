@@ -60,16 +60,21 @@
         var elements = stripe.elements();
         var cardElement = elements.create('card');
         var amountText = document.getElementById('price1').textContent; // Get the text content
-        var amount = parseInt(amountText); // Convert the text co
+        var amount = parseInt(amountText); // Convert the text content to an integer
   
         cardElement.mount('#card-element');
         
         var form = document.getElementById('payment-form');
+        var submitButton = form.querySelector('button[type="submit"]');
+
         form.addEventListener('submit', function(event) {
             event.preventDefault();
+            submitButton.disabled = true; // Disable the submit button to prevent multiple submissions
+
             stripe.createToken(cardElement).then(function(result) {
                 if (result.error) {
                     console.error(result.error.message);
+                    submitButton.disabled = false; // Re-enable the submit button if there's an error
                 } else {
                     var token = result.token.id;
                     var amountText = document.getElementById('price1').textContent; // Get the text content
@@ -89,36 +94,42 @@
                         })
                     })
                     .then(function(response) {
-                        return response;
-                        console.error(amount);
+                        return response.json(); // Parse response as JSON
                     })
                     .then(function(data) {
-                        console.error(amount);
-                        if (data.client_secret) {
-                            // Payment intent created successfully, proceed to confirm the payment
-                            stripe.confirmCardPayment(data.client_secret, {
-                                payment_method: {
-                                    card: cardElement,
-                                    billing_details: {
-                                        email: email
-                                        // Add additional billing details if needed
-                                    }
-                                }
-                            }).then(function(result) {
-                                console.error(amount);
-                                if (result.error) {
-                                    // Payment failed, handle error
-                                    console.error(result.error.message);
+                        if (data.message) {
+                            // Payment was successful, show success dialog
+                            alert(data.message);
+
+                            // Redirect to another page
+                            window.location.href = "http://localhost/cms2/public/";
+
+                            // Hide the payment form
+                            form.style.display = 'none';
+
+                            // Invalidate the token
+                            stripe.tokens.retrieve(token, function(err, retrievedToken) {
+                                if (err) {
+                                    console.error('Error retrieving token:', err);
                                 } else {
-                                    // Payment succeeded, redirect or show success message
-                                    console.log(result.paymentIntent);
+                                    stripe.tokens.update(token, {used: true}, function(err, updatedToken) {
+                                        if (err) {
+                                            console.error('Error updating token:', err);
+                                        } else {
+                                            console.log('Token invalidated:', updatedToken);
+                                        }
+                                    });
                                 }
                             });
-                        } 
+                        } else {
+                            // Payment failed, handle error
+                            console.error(data.error);
+                            submitButton.disabled = false; // Re-enable the submit button if there's an error
+                        }
                     })
                     .catch(function(error) {
                         console.error('Error processing payment:', error);
-                        console.error(amount);
+                        submitButton.disabled = false; // Re-enable the submit button if there's an error
                     });
                 }
             });
@@ -127,6 +138,9 @@
 
     document.addEventListener('DOMContentLoaded', setupPaymentForm);
 </script>
+    
+
+
 
 </body>
 </html>
